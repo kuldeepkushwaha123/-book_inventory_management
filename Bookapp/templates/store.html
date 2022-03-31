@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block body %}
+<ul class="nav nav-tabs" style="background-color:yellow;margin-top:-20px">
+    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+    <li><a href="/library/create/">Add New Book</a></li>
+    <li><a href="/library/outstoks/">Out of stoks</a></li>
+    <li><a class="btn btn-danger" href="/logout/">Logout</a></li>
+    <li style="margin-left:100px;margin-top:-12px"><h3><b>
+        Welcome to Book Inventory Management System</b></h3></li>
+
+</ul>
+
+<div class="container" style="margin-top:30px">
+    <table class="table table-hover" style="background-color:white;">
+        <label class="">You are : {{request.user}}</label>
+        <thead style="background-color:#1989;">
+        <tr>
+            <th>Book Id</th>
+            <th>Book Name</th>
+            <th>Book Title</th>
+            <th>Book Author</th>
+            <th>Date</th>
+            <th>Total Quantity</th>
+            <th>Avaliable Quantity</th>
+            <th>List out</th>
+            <th>Update book</th>
+            <th>Delete book</th>
+        </tr>
+        </thead>
+        {% for i in data %}
+        <tbody>
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.bname}}</td>
+            <td>{{i.b_title}}</td>
+            <td>{{i.b_author}}</td>
+            <td>{{i.publish_date}}</td>
+            <td>{{i.total_quantity}}</td>
+            <td>{{i.aval_quantity}}</td>
+            <td><a class="btn btn-info btn-sm" href="/library/listout/{{i.id}}">List out</a></td>
+            <td><a class="btn btn-primary btn-sm" href="/library/edit/{{i.id}}">Update</a></td>
+            <td><a class="btn btn-danger btn-sm" href="/library/deletebook/{{i.id}}">Delete</a></td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
